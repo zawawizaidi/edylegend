@@ -34,6 +34,8 @@
         select,
         textarea {
             font-size: 18px !important;
+            color: #111827 !important;
+            /* Force dark text */
             /* Force large input text */
         }
     </style>
@@ -130,7 +132,7 @@
                             <label class="text-gray-900 font-bold text-sm text-center mb-1">Mix Special<br><span
                                     class="text-brand-red text-lg">RM12</span></label>
                             <input type="number" id="calc-qty-besar" placeholder="0" min="0"
-                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow"
+                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow text-gray-900 bg-white"
                                 oninput="calculateTotal()">
                         </div>
 
@@ -140,7 +142,7 @@
                             <label class="text-gray-900 font-bold text-sm text-center mb-1">Mix Kecil<br><span
                                     class="text-brand-red text-lg">RM6</span></label>
                             <input type="number" id="calc-qty-kecil" placeholder="0" min="0"
-                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow"
+                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow text-gray-900 bg-white"
                                 oninput="calculateTotal()">
                         </div>
                     </div>
@@ -204,6 +206,15 @@
                             class="text-red-500">*</span></label>
                     <input type="date" id="order-date" required
                         class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition">
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Masa Ambil / Delivery <span
+                            class="text-red-500">*</span></label>
+                    <input type="time" id="order-time" required
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition">
+                    <p id="time-reminder" class="text-xs text-red-600 mt-1 font-bold hidden">⚠️ Untuk Delivery, sila set
+                        masa 30 minit - 1 jam awal.</p>
                 </div>
 
                 <div>
@@ -310,12 +321,16 @@
         function toggleAddress(val) {
             const addrContainer = document.getElementById('address-container');
             const addrInput = document.getElementById('order-address');
+            const timeReminder = document.getElementById('time-reminder');
+
             if (val === 'Delivery') {
                 addrContainer.classList.remove('hidden');
                 addrInput.required = true;
+                timeReminder.classList.remove('hidden');
             } else {
                 addrContainer.classList.add('hidden');
                 addrInput.required = false;
+                timeReminder.classList.add('hidden');
             }
         }
 
@@ -325,10 +340,21 @@
             const name = document.getElementById('order-name').value;
             const phone = document.getElementById('order-phone').value;
             const date = document.getElementById('order-date').value;
+            const time = document.getElementById('order-time').value;
             const summary = document.getElementById('order-summary').value;
             const method = document.getElementById('order-pickup-delivery').value;
             const address = document.getElementById('order-address').value;
             const payment = document.getElementById('order-payment').value;
+
+            // Format time 12h
+            let timeFormatted = time;
+            if (time) {
+                const [h, m] = time.split(':');
+                const hour = parseInt(h);
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const hour12 = hour % 12 || 12;
+                timeFormatted = `${hour12}:${m} ${ampm}`;
+            }
 
             // Validation: Must select at least one item
             let qtyBesar = parseFloat(document.getElementById('calc-qty-besar').value) || 0;
@@ -352,7 +378,8 @@
 
 Nama: ${name}
 No Phone: ${phone}
-Tarikh Ambil: ${date}
+Tarikh: ${date}
+Masa: ${timeFormatted}
 
 Tempahan:
 ${summary}
