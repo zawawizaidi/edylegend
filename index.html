@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ms">
 
 <head>
@@ -123,23 +123,26 @@
                     Total Bayaran</h3>
 
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Jenis
-                            Murtabak</label>
-                        <select id="calc-type"
-                            class="w-full p-3 rounded-lg text-gray-900 font-bold bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
-                            onchange="calculateTotal()">
-                            <option value="12">Mix Special (Besar) - RM12</option>
-                            <option value="6">Kecil (Mix) - RM6</option>
-                        </select>
-                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Mix Special Input -->
+                        <div
+                            class="bg-white p-3 rounded-lg flex flex-col items-center justify-center border-2 border-transparent focus-within:border-brand-yellow transition">
+                            <label class="text-gray-900 font-bold text-sm text-center mb-1">Mix Special<br><span
+                                    class="text-brand-red text-lg">RM12</span></label>
+                            <input type="number" id="calc-qty-besar" placeholder="0" min="0"
+                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow"
+                                oninput="calculateTotal()">
+                        </div>
 
-                    <div>
-                        <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Kuantiti
-                            (Keping)</label>
-                        <input type="number" id="calc-qty" placeholder="0" min="1"
-                            class="w-full p-3 rounded-lg text-gray-900 font-bold text-center bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
-                            oninput="calculateTotal()">
+                        <!-- Kecil Input -->
+                        <div
+                            class="bg-white p-3 rounded-lg flex flex-col items-center justify-center border-2 border-transparent focus-within:border-brand-yellow transition">
+                            <label class="text-gray-900 font-bold text-sm text-center mb-1">Mix Kecil<br><span
+                                    class="text-brand-red text-lg">RM6</span></label>
+                            <input type="number" id="calc-qty-kecil" placeholder="0" min="0"
+                                class="w-20 p-2 text-center font-extrabold text-2xl outline-none border-b-2 border-gray-200 focus:border-brand-yellow"
+                                oninput="calculateTotal()">
+                        </div>
                     </div>
 
                     <div>
@@ -203,19 +206,10 @@
                         class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition">
                 </div>
 
-                <div class="grid grid-cols-1 gap-4">
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2">Jenis Pilihan</label>
-                        <input type="text" id="order-type-display" value="Mix Special (Besar) - RM12" readonly
-                            class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg font-bold text-gray-500 cursor-not-allowed text-sm">
-                    </div>
-                    <div>
-                        <label class="block text-gray-700 font-bold mb-2">Kuantiti</label>
-                        <input type="number" id="order-qty" placeholder="0" min="1" readonly
-                            class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg text-center font-bold text-gray-500 cursor-not-allowed"
-                            title="Ubah di bahagian kalkulator atas">
-                        <p class="text-xs text-gray-500 mt-1">Ikut kalkulator di atas</p>
-                    </div>
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Ringkasan Tempahan</label>
+                    <textarea id="order-summary" rows="3" readonly
+                        class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg text-gray-700 font-medium cursor-not-allowed text-sm whitespace-pre-line"></textarea>
                 </div>
 
                 <div>
@@ -269,26 +263,20 @@
         // --- Calculator Logic ---
         function calculateTotal() {
             // Get values
-            let typePrice = parseFloat(document.getElementById('calc-type').value);
-            let qty = document.getElementById('calc-qty').value;
-            let delivery = document.getElementById('calc-delivery').value;
+            let qtyBesar = parseFloat(document.getElementById('calc-qty-besar').value) || 0;
+            let qtyKecil = parseFloat(document.getElementById('calc-qty-kecil').value) || 0;
+            let delivery = parseFloat(document.getElementById('calc-delivery').value) || 0;
 
-            // Sync with order form display
-            let typeText = "";
-            let typeSelect = document.getElementById('calc-type');
-            if (typeSelect.selectedIndex >= 0) {
-                typeText = typeSelect.options[typeSelect.selectedIndex].text;
-            }
-            document.getElementById('order-type-display').value = typeText;
-            document.getElementById('order-qty').value = qty;
+            // Generate Summary String
+            let summaryParts = [];
+            if (qtyBesar > 0) summaryParts.push(`${qtyBesar}x Murtabak Mix Special (Besar) - RM12`);
+            if (qtyKecil > 0) summaryParts.push(`${qtyKecil}x Murtabak Kecil (Mix) - RM6`);
 
-            // Calculate
-            let total = 0;
-            if (qty) {
-                total = (parseFloat(qty) * typePrice) + (parseFloat(delivery) || 0);
-            } else {
-                total = (parseFloat(delivery) || 0);
-            }
+            let summaryText = summaryParts.length > 0 ? summaryParts.join('\n') : "Sila masukkan kuantiti di atas";
+            document.getElementById('order-summary').value = summaryText;
+
+            // Calculate Total
+            let total = (qtyBesar * 12) + (qtyKecil * 6) + delivery;
 
             // Update Display
             document.getElementById('calc-show-total').innerText = 'RM ' + total.toFixed(2);
@@ -323,16 +311,16 @@
             const name = document.getElementById('order-name').value;
             const phone = document.getElementById('order-phone').value;
             const date = document.getElementById('order-date').value;
-            const qty = document.getElementById('calc-qty').value; // Get straight from calc source
-            const type = document.getElementById('order-type-display').value;
+            const summary = document.getElementById('order-summary').value;
             const method = document.getElementById('order-pickup-delivery').value;
             const address = document.getElementById('order-address').value;
             const payment = document.getElementById('order-payment').value;
 
             // Recalculate total safely
-            const typePrice = parseFloat(document.getElementById('calc-type').value);
-            const deliveryFee = parseFloat(document.getElementById('calc-delivery').value) || 0;
-            const total = (parseFloat(qty) * typePrice) + deliveryFee;
+            let qtyBesar = parseFloat(document.getElementById('calc-qty-besar').value) || 0;
+            let qtyKecil = parseFloat(document.getElementById('calc-qty-kecil').value) || 0;
+            let delivery = parseFloat(document.getElementById('calc-delivery').value) || 0;
+            let total = (qtyBesar * 12) + (qtyKecil * 6) + delivery;
             const totalFixed = total.toFixed(2);
 
             // Construct Message
@@ -341,8 +329,10 @@
 Nama: ${name}
 No Phone: ${phone}
 Tarikh Ambil: ${date}
-Jenis: ${type}
-Kuantiti: ${qty}
+
+Tempahan:
+${summary}
+
 Pickup / Delivery: ${method}
 Alamat: ${method === 'Pickup' ? '-' : address}
 Cara Bayar: ${payment}
@@ -374,5 +364,4 @@ Nota: Resit akan diberikan jika perlu(sila nyatakan`;
     </script>
 </body>
 
-    </html>
 </html>
