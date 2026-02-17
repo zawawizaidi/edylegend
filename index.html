@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="ms">
 
 <head>
@@ -44,7 +44,8 @@
     <div class="max-w-md mx-auto bg-white shadow-xl min-h-screen relative">
 
         <!-- Header / Hero Section -->
-        <header class="bg-brand-red text-white p-6 text-center rounded-b-3xl shadow-lg relative overflow-hidden">
+        <header
+            class="bg-brand-red text-white p-6 pb-8 text-center rounded-b-3xl shadow-lg relative overflow-hidden -mb-6 z-10">
             <h1 class="text-3xl font-bold mb-2 text-brand-yellow drop-shadow-md">EDY LEGEND ENT</h1>
             <h2 class="text-xl font-semibold mb-4">Murtabak Mix Special</h2>
             <p class="text-lg font-medium mb-4">Assalamualaikum & Salam Ramadan 🌙</p>
@@ -56,172 +57,211 @@
                         (ayam + daging)</span> sahaja. Tiada pilihan asing.
                 </p>
             </div>
-    </div>
-    </header>
+        </header>
 
-    <!-- Product & Delivery Info -->
-    <section class="p-6 space-y-6">
+        <!-- Product & Delivery Info -->
+        <section class="p-6 pt-10 space-y-4">
 
-        <!-- Price Card -->
-        <div class="bg-yellow-50 border-l-4 border-brand-yellow p-4 rounded shadow-sm">
-            <h3 class="font-bold text-gray-800 text-xl">Harga</h3>
-            <p class="text-3xl font-extrabold text-brand-red mt-1">RM12 <span
-                    class="text-lg text-gray-600 font-normal">/ sekeping</span></p>
-        </div>
+            <!-- Price Card -->
+            <div class="grid grid-cols-1 gap-3">
+                <div class="bg-yellow-50 border-l-4 border-brand-yellow p-4 rounded shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg">Murtabak Mix Special</h3>
+                    <p class="text-3xl font-extrabold text-brand-red mt-1">RM12 <span
+                            class="text-lg text-gray-600 font-normal">/ sekeping</span></p>
+                </div>
+                <div class="bg-yellow-50 border-l-4 border-orange-400 p-4 rounded shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg">Murtabak Kecil (Mix)</h3>
+                    <p class="text-3xl font-extrabold text-brand-red mt-1">RM6 <span
+                            class="text-lg text-gray-600 font-normal">/ sekeping</span></p>
+                </div>
+            </div>
 
-        <!-- Time Info -->
-        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded shadow-sm">
-            <h3 class="font-bold text-gray-800 text-xl">Waktu Operasi</h3>
-            <p class="text-gray-700 mt-1">Pickup & delivery bermula jam <span class="font-bold">1.00 petang</span>
-                (bergantung pada slot).</p>
-        </div>
+            <!-- Time Info -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded shadow-sm">
+                <h3 class="font-bold text-gray-800 text-xl">Waktu Operasi</h3>
+                <p class="text-gray-700 mt-1">Pickup & delivery bermula jam <span class="font-bold">1.00 petang</span>
+                    (bergantung pada slot).</p>
+            </div>
 
-        <!-- Delivery Note & Link -->
-        <div class="bg-white p-5 rounded-xl shadow-md border border-gray-200">
-            <h3 class="font-bold text-xl mb-2 text-gray-800">Info Delivery</h3>
-            <p class="text-gray-600 mb-4">Delivery guna Lalamove (ikut harga semasa).</p>
-            <a href="https://delivery.lalamove.com/forms/MY1ab49f9c34074b0e8301cc891acba776" target="_blank"
-                class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition shadow-lg">
-                Check Harga Lalamove
-            </a>
-            <p class="text-sm text-gray-500 mt-2 text-center italic">*Link akan buka web/app Lalamove</p>
-        </div>
+            <!-- Delivery Note & Link -->
+            <div class="bg-white p-5 rounded-xl shadow-md border border-gray-200">
+                <h3 class="font-bold text-xl mb-2 text-gray-800">Info Delivery</h3>
+                <p class="text-gray-600 mb-4">Delivery guna Lalamove (ikut harga semasa).</p>
 
-    </section>
+                <!-- Address Copy Section -->
+                <div class="bg-gray-100 p-3 rounded-lg border border-gray-300 mb-4">
+                    <p class="text-sm text-gray-700 font-medium mb-1">Alamat Pickup / Set Lokasi:</p>
+                    <p id="pickup-address"
+                        class="text-xs font-mono bg-white p-2 rounded border select-all mb-2 break-words">8551B, jalan
+                        setia, sungai ramal baru 43000 kajang selangor</p>
+                    <button onclick="copyAddress()" id="btn-copy"
+                        class="text-xs bg-gray-600 hover:bg-gray-800 text-white px-3 py-2 rounded transition w-full flex justify-center items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                        Salin Alamat
+                    </button>
+                    <p id="copy-msg" class="text-green-600 text-xs text-center mt-1 hidden font-bold">Alamat disalin!
+                    </p>
+                </div>
 
-    <!-- Payment Calculator -->
-    <section class="px-6 mb-6">
-        <div class="bg-gray-800 text-white p-6 rounded-2xl shadow-lg border-2 border-brand-yellow">
-            <h3 class="text-2xl font-bold text-brand-yellow mb-4 text-center border-b border-gray-600 pb-2">Kira
-                Total Bayaran</h3>
+                <a href="https://www.lalamove.com/en-my/" target="_blank"
+                    class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg text-center transition shadow-lg">
+                    Buka Lalamove Website
+                </a>
+                <p class="text-sm text-gray-500 mt-2 text-center italic">*Link akan buka web/app Lalamove</p>
+            </div>
 
-            <div class="space-y-4">
+        </section>
+
+        <!-- Payment Calculator -->
+        <section class="px-6 mb-6">
+            <div class="bg-gray-800 text-white p-6 rounded-2xl shadow-lg border-2 border-brand-yellow">
+                <h3 class="text-2xl font-bold text-brand-yellow mb-4 text-center border-b border-gray-600 pb-2">Kira
+                    Total Bayaran</h3>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Jenis
+                            Murtabak</label>
+                        <select id="calc-type"
+                            class="w-full p-3 rounded-lg text-gray-900 font-bold bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
+                            onchange="calculateTotal()">
+                            <option value="12">Mix Special (Besar) - RM12</option>
+                            <option value="6">Kecil (Mix) - RM6</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Kuantiti
+                            (Keping)</label>
+                        <input type="number" id="calc-qty" placeholder="0" min="1"
+                            class="w-full p-3 rounded-lg text-gray-900 font-bold text-center bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
+                            oninput="calculateTotal()">
+                    </div>
+
+                    <div>
+                        <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Caj
+                            Delivery (RM)</label>
+                        <input type="number" id="calc-delivery" placeholder="0.00"
+                            class="w-full p-3 rounded-lg text-gray-900 font-bold text-center bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
+                            oninput="calculateTotal()">
+                        <p class="text-xs text-gray-400 mt-1 text-center">Masukkan harga dari Lalamove tadi</p>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-gray-600 text-center">
+                        <p class="text-gray-400 text-sm mb-1">Total Perlu Bayar</p>
+                        <div class="text-4xl font-extrabold text-brand-yellow" id="calc-show-total">RM 12.00</div>
+                    </div>
+                </div>
+
+                <!-- Bank Info -->
+                <div class="mt-6 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
+                    <p class="text-sm text-gray-300 font-semibold mb-2 text-center underline">MAKKLUMAT PEMBAYARAN</p>
+                    <div class="text-center space-y-1">
+                        <p class="font-bold text-lg">CIMB</p>
+                        <p
+                            class="font-mono text-xl tracking-wider text-brand-yellow select-all bg-black/20 py-1 rounded">
+                            8605641625</p>
+                        <p class="text-sm">NZ LEGEND</p>
+                    </div>
+                    <p class="text-xs text-center text-red-300 mt-3 bg-red-900/40 p-2 rounded">
+                        ⚠️ Sila screenshot resit selepas transfer.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Form -->
+        <section class="p-6 bg-white rounded-t-3xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+            <h3 class="text-2xl font-bold text-brand-red mb-6 text-center border-b-2 border-red-100 pb-2">Borang
+                Tempahan</h3>
+
+            <form id="orderForm" class="space-y-5" onsubmit="event.preventDefault(); sendWhatsApp();">
+
                 <div>
-                    <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Kuantiti
-                        (Keping)</label>
-                    <input type="number" id="calc-qty" placeholder="0" min="1"
-                        class="w-full p-3 rounded-lg text-gray-900 font-bold text-center bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
-                        oninput="calculateTotal()">
+                    <label class="block text-gray-700 font-bold mb-2">Nama <span class="text-red-500">*</span></label>
+                    <input type="text" id="order-name" required
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                        placeholder="Nama Penuh">
                 </div>
 
                 <div>
-                    <label class="block text-gray-300 mb-1 text-sm uppercase tracking-wide font-semibold">Caj
-                        Delivery (RM)</label>
-                    <input type="number" id="calc-delivery" placeholder="0.00"
-                        class="w-full p-3 rounded-lg text-gray-900 font-bold text-center bg-white border-2 border-transparent focus:border-brand-yellow focus:outline-none transition"
-                        oninput="calculateTotal()">
-                    <p class="text-xs text-gray-400 mt-1 text-center">Masukkan harga dari Lalamove tadi</p>
+                    <label class="block text-gray-700 font-bold mb-2">No. Telefon <span
+                            class="text-red-500">*</span></label>
+                    <input type="tel" id="order-phone" required
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                        placeholder="0123456789">
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-gray-600 text-center">
-                    <p class="text-gray-400 text-sm mb-1">Total Perlu Bayar</p>
-                    <div class="text-4xl font-extrabold text-brand-yellow" id="calc-show-total">RM 12.00</div>
-                </div>
-            </div>
-
-            <!-- Bank Info -->
-            <div class="mt-6 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                <p class="text-sm text-gray-300 font-semibold mb-2 text-center underline">MAKKLUMAT PEMBAYARAN</p>
-                <div class="text-center space-y-1">
-                    <p class="font-bold text-lg">CIMB</p>
-                    <p class="font-mono text-xl tracking-wider text-brand-yellow select-all bg-black/20 py-1 rounded">
-                        8605641625</p>
-                    <p class="text-sm">NZ LEGEND</p>
-                </div>
-                <p class="text-xs text-center text-red-300 mt-3 bg-red-900/40 p-2 rounded">
-                    ⚠️ Sila screenshot resit selepas transfer.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Order Form -->
-    <section class="p-6 bg-white rounded-t-3xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-        <h3 class="text-2xl font-bold text-brand-red mb-6 text-center border-b-2 border-red-100 pb-2">Borang
-            Tempahan</h3>
-
-        <form id="orderForm" class="space-y-5" onsubmit="event.preventDefault(); sendWhatsApp();">
-
-            <div>
-                <label class="block text-gray-700 font-bold mb-2">Nama <span class="text-red-500">*</span></label>
-                <input type="text" id="order-name" required
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
-                    placeholder="Nama Penuh">
-            </div>
-
-            <div>
-                <label class="block text-gray-700 font-bold mb-2">No. Telefon <span
-                        class="text-red-500">*</span></label>
-                <input type="tel" id="order-phone" required
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
-                    placeholder="0123456789">
-            </div>
-
-            <div>
-                <label class="block text-gray-700 font-bold mb-2">Tarikh Ambil <span
-                        class="text-red-500">*</span></label>
-                <input type="date" id="order-date" required
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition">
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Kuantiti</label>
-                    <input type="number" id="order-qty" placeholder="0" min="1" readonly
-                        class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg text-center font-bold text-gray-500 cursor-not-allowed"
-                        title="Ubah di bahagian kalkulator atas">
-                    <p class="text-xs text-gray-500 mt-1">Ikut kalkulator di atas</p>
+                    <label class="block text-gray-700 font-bold mb-2">Tarikh Ambil <span
+                            class="text-red-500">*</span></label>
+                    <input type="date" id="order-date" required
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition">
                 </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Jenis Pilihan</label>
+                        <input type="text" id="order-type-display" value="Mix Special (Besar) - RM12" readonly
+                            class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg font-bold text-gray-500 cursor-not-allowed text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-gray-700 font-bold mb-2">Kuantiti</label>
+                        <input type="number" id="order-qty" placeholder="0" min="1" readonly
+                            class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg text-center font-bold text-gray-500 cursor-not-allowed"
+                            title="Ubah di bahagian kalkulator atas">
+                        <p class="text-xs text-gray-500 mt-1">Ikut kalkulator di atas</p>
+                    </div>
+                </div>
+
                 <div>
-                    <label class="block text-gray-700 font-bold mb-2">Jenis</label>
-                    <input type="text" value="Murtabak Mix" readonly
-                        class="w-full p-3 bg-gray-100 border-2 border-gray-300 rounded-lg text-center font-bold text-gray-500 cursor-not-allowed">
+                    <label class="block text-gray-700 font-bold mb-2">Pickup / Delivery <span
+                            class="text-red-500">*</span></label>
+                    <select id="order-pickup-delivery"
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition bg-white"
+                        onchange="toggleAddress(this.value)">
+                        <option value="Pickup">Pickup</option>
+                        <option value="Delivery">Delivery</option>
+                    </select>
                 </div>
-            </div>
 
-            <div>
-                <label class="block text-gray-700 font-bold mb-2">Pickup / Delivery <span
-                        class="text-red-500">*</span></label>
-                <select id="order-pickup-delivery"
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition bg-white"
-                    onchange="toggleAddress(this.value)">
-                    <option value="Pickup">Pickup</option>
-                    <option value="Delivery">Delivery</option>
-                </select>
-            </div>
+                <div id="address-container" class="hidden">
+                    <label class="block text-gray-700 font-bold mb-2">Alamat Penuh <span
+                            class="text-red-500">*</span></label>
+                    <textarea id="order-address" rows="3"
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                        placeholder="No rumah, jalan, taman..."></textarea>
+                </div>
 
-            <div id="address-container" class="hidden">
-                <label class="block text-gray-700 font-bold mb-2">Alamat Penuh <span
-                        class="text-red-500">*</span></label>
-                <textarea id="order-address" rows="3"
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
-                    placeholder="No rumah, jalan, taman..."></textarea>
-            </div>
+                <div>
+                    <label class="block text-gray-700 font-bold mb-2">Cara Bayar <span
+                            class="text-red-500">*</span></label>
+                    <select id="order-payment"
+                        class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition bg-white">
+                        <option value="Online Transfer (Instant)">Online Transfer (Instant)</option>
+                        <option value="Tunai (Cash)">Tunai (Cash - Pickup Sahaja)</option>
+                    </select>
+                </div>
 
-            <div>
-                <label class="block text-gray-700 font-bold mb-2">Cara Bayar <span class="text-red-500">*</span></label>
-                <select id="order-payment"
-                    class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition bg-white">
-                    <option value="Online Transfer (Instant)">Online Transfer (Instant)</option>
-                    <option value="Tunai (Cash)">Tunai (Cash - Pickup Sahaja)</option>
-                </select>
-            </div>
+                <!-- Main Button -->
+                <button type="submit"
+                    class="w-full bg-brand-red hover:bg-red-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg transform active:scale-95 transition flex items-center justify-center gap-2 mt-4">
+                    <span>Tekan Sini Untuk Order</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                    </svg>
+                </button>
+            </form>
 
-            <!-- Main Button -->
-            <button type="submit"
-                class="w-full bg-brand-red hover:bg-red-700 text-white font-bold text-xl py-4 rounded-xl shadow-lg transform active:scale-95 transition flex items-center justify-center gap-2 mt-4">
-                <span>Tekan Sini Untuk Order</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.151-.174.2-.298.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                </svg>
-            </button>
-        </form>
-
-        <footer class="mt-8 text-center text-gray-500 text-sm pb-4">
-            <p>&copy; 2026 EDY LEGEND ENT</p>
-        </footer>
-    </section>
+            <footer class="mt-8 text-center text-gray-500 text-sm pb-4">
+                <p>&copy; 2026 EDY LEGEND ENT</p>
+            </footer>
+        </section>
 
     </div>
 
@@ -229,22 +269,40 @@
         // --- Calculator Logic ---
         function calculateTotal() {
             // Get values
+            let typePrice = parseFloat(document.getElementById('calc-type').value);
             let qty = document.getElementById('calc-qty').value;
             let delivery = document.getElementById('calc-delivery').value;
 
-            // Sync with order form
+            // Sync with order form display
+            let typeText = "";
+            let typeSelect = document.getElementById('calc-type');
+            if (typeSelect.selectedIndex >= 0) {
+                typeText = typeSelect.options[typeSelect.selectedIndex].text;
+            }
+            document.getElementById('order-type-display').value = typeText;
             document.getElementById('order-qty').value = qty;
 
             // Calculate
             let total = 0;
             if (qty) {
-                total = (parseFloat(qty) * 12) + (parseFloat(delivery) || 0);
+                total = (parseFloat(qty) * typePrice) + (parseFloat(delivery) || 0);
             } else {
                 total = (parseFloat(delivery) || 0);
             }
 
             // Update Display
             document.getElementById('calc-show-total').innerText = 'RM ' + total.toFixed(2);
+        }
+
+        function copyAddress() {
+            const text = document.getElementById('pickup-address').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const msg = document.getElementById('copy-msg');
+                msg.classList.remove('hidden');
+                setTimeout(() => {
+                    msg.classList.add('hidden');
+                }, 2000);
+            });
         }
 
         function toggleAddress(val) {
@@ -266,14 +324,15 @@
             const phone = document.getElementById('order-phone').value;
             const date = document.getElementById('order-date').value;
             const qty = document.getElementById('calc-qty').value; // Get straight from calc source
-            const type = "RM12 (Mix)";
+            const type = document.getElementById('order-type-display').value;
             const method = document.getElementById('order-pickup-delivery').value;
             const address = document.getElementById('order-address').value;
             const payment = document.getElementById('order-payment').value;
 
             // Recalculate total safely
+            const typePrice = parseFloat(document.getElementById('calc-type').value);
             const deliveryFee = parseFloat(document.getElementById('calc-delivery').value) || 0;
-            const total = (parseFloat(qty) * 12) + deliveryFee;
+            const total = (parseFloat(qty) * typePrice) + deliveryFee;
             const totalFixed = total.toFixed(2);
 
             // Construct Message
@@ -282,8 +341,8 @@
 Nama: ${name}
 No Phone: ${phone}
 Tarikh Ambil: ${date}
+Jenis: ${type}
 Kuantiti: ${qty}
-Rm12 / Rm6: ${type}
 Pickup / Delivery: ${method}
 Alamat: ${method === 'Pickup' ? '-' : address}
 Cara Bayar: ${payment}
@@ -315,4 +374,5 @@ Nota: Resit akan diberikan jika perlu(sila nyatakan`;
     </script>
 </body>
 
+    </html>
 </html>
